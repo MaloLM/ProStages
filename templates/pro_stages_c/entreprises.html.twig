@@ -6,129 +6,46 @@
 
 
 {% block contenu %}
-<div class="container-fluid">
+<div class = "px-2">
+  <div class="card ">
+      <h5 class="card-header">Offres de stages</h5>
+      <div class="card-body">
 
-        <div class="row">
-
-          <div class="col-12">
-
-            <div class="jumbotron">
+          <div class="container-fluid">
               <div class="row">
-                <div class="col-md-4">
+                  <div class="col-md-12">
+                      <!--liste des stages-->
+                      <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Chercher par entreprise</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for entreprise in entreprises %}
+    <tr>
+      <th scope="row"><a href="{{path("tri_stage",{type:"entreprises",id:entreprise.id})}}">{{entreprise.nom}}</a></th> 
+     
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
 
-                  <a class="btn btn-primary btn-lg offset-0" role="button" title="Lien" href="/" >Aucun filtre</a>
+                    
 
-                </div>
-                <div class="col-md-4">
-                  <a class="btn btn-primary btn-lg" role="button" title="Lien" href="/formations" >Filtrer par formations</a>
+                  </div>
 
-                </div>
-                <div class="col-md-4">
-                  <a class="btn btn-primary btn-lg focus disabled" role="button" title="Lien" href="/entreprises" >Filtrer par entreprises</a>
-                </div>
               </div>
-              <br>
-
-            <div class="container-fluid">
-
-            <div class="row">
-              <div class="col-md-12">
-
-              </div>
-
-              <div class="col-md-12">
-                <div id="accordion">
-                  <div class="card">
-                    <div class="card-header" id="headingOne">
-                      <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                          Offre de stage A
-                        </button>
-                      </h5>
-                    </div>
-
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                      <div class="card-body">
-                        Description du stage A. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum vehicula augue, quis bibendum purus
-                        vulputate eget. Phasellus consequat, orci facilisis pretium dignissim, nisi mauris lacinia ligula,
-                        ac aliquet ipsum tortor quis augue. Curabitur aliquam quis sapien ac consectetur. Vivamus euismod,
-                         ipsum eget vestibulum finibus, sem lacus pulvinar velit, id molestie ligula metus non turpis.
-                         Nunc eros ipsum, viverra nec ultrices a, vestibulum vel neque.  beer farm-to-table, raw denim
-                         aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                      </div>
-
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-success">En savoir plus</button>
-                    </div>
-                    <br/>
-                      </div>
-
-                    </div>
-                  </div>
-
-
-                  <div class="card">
-                    <div class="card-header" id="headingTwo">
-                      <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Offre de stage B
-                        </button>
-                      </h5>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                      <div class="card-body">
-                        Description du stage B. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum vehicula augue, quis bibendum purus
-                        vulputate eget. Phasellus consequat, orci facilisis pretium dignissim, nisi mauris lacinia ligula,
-                        ac aliquet ipsum tortor quis augue.
-                    </div>
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-success">En savoir plus</button>
-                    </div>
-                    <br/>
-                  </div>
-                  <div class="card">
-                    <div class="card-header" id="headingThree">
-                      <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          Offre de stage C
-                        </button>
-                      </h5>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                      <div class="card-body">
-                        Description du stage B. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum vehicula augue, quis bibendum purus
-                        vulputate eget. Phasellus consequat, orci facilisis pretium dignissim, nisi mauris lacinia ligula,
-                        ac aliquet ipsum tortor quis augue. Curabitur aliquam quis sapien ac consectetur. Vivamus euismod,
-                         ipsum eget vestibulum finibus, sem lacus pulvinar velit, id molestie ligula metus non turpis.
-                      </div>
-                      <div class="col-md-12">
-                          <button type="button" class="btn btn-success">En savoir plus</button>
-                      </div>
-                      <br/>
-                    </div>
-                  </div>
-
-                  <div class="card">
-                    <div class="card-header" id="headingFour">
-                      <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          Offre de stage D
-                        </button>
-                      </h5>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                      <div class="card-body">
-                        Description du stage B. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum vehicula augue, quis bibendum purus
-                        vulputate eget. Phasellus consequat, orci facilisis pretium dignissim, nisi mauris lacinia ligula,
-                        ac aliquet ipsum tortor quis augue. Curabitur aliquam quis sapien ac consectetur. Vivamus euismod,
-                         ipsum eget vestibulum finibus, sem lacus pulvinar velit, id molestie ligula metus non turpis.
-                      </div>
-                      <div class="col-md-12">
-                          <button type="button" class="btn btn-success">En savoir plus</button>
-                      </div>
-                      <br/>
-                    </div>
-                  </div>
-                </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
   
 {% endblock %}
