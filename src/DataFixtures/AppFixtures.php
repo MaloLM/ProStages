@@ -35,21 +35,24 @@ class AppFixtures extends Fixture
         }
 
 //Definition des Entreprises
-
-        $nbEntreprises =5;
+        $nbEntreprises = $faker->numberBetween($min = 10, $max = 20);
         $tabEntreprise = array();
-        for ($i=0; $i<$nbEntreprises ; $i++) { 
+
+        for ($i = 0; $i < $nbEntreprises ; $i++) { 
+            
             //Création d'une entreprise
             $entreprise = new Entreprise();
             $entreprise->setNom($faker->company);
             $entreprise->setAdresse($faker->address);
             $entreprise->setActivite($faker->sentence($nbWords =80, $variableNbWords = true));
-            $nomEntreprise = $entreprise->getNom();      
-            $entreprise->setSite($faker->regexify('http\:\/\/'.$nomEntreprise.'\.'.$faker->tld));
+            $nomEntreprise = $entreprise->getNom();
             
+            //Préparation du nom de l'entreprise
+            $nomEntreprise = str_replace(' ','_',$entreprise->getNom()); //Enlève les espace au nom d'entreprise
+            $nomEntreprise = str_replace('.','',$nomEntreprise); //Enlève les points       
+            $entreprise->setSiteWeb($faker->regexify('http\:\/\/'.$nomEntreprise.'\.'.$faker->tld));
 
             //mettre dans tableau initialisé
-
             array_push($tabEntreprise, $entreprise);
 
             $manager->persist($entreprise);
@@ -63,31 +66,41 @@ foreach ($tabEntreprise as $entreprise){
     for ($i = 0 ; $i < $nbStages; $i++)
     {
         // ajouter a un stage a l'entreprise courante
-        //Création d'un stage
-        $stage = new Stage();
-        $stage->setTitre($faker->sentence($nbWords =15, $variableNbWords = true));
-        $stage->setEmail($faker->companyEmail);
-        $stage->setDescription($faker->realText($maxNbChars = 200, $indesSize = 2));
-        $stage->setEntreprise($entreprise);
+            //Création d'un stage
+            $stage = new Stage();
+            $stage->setTitre($faker->sentence($nbWords =15, $variableNbWords = true));
+
+            $nbDomaines = $faker->numberBetween($min = 1, $max = 5);
+            $domaines = "";
+            for($d = 0 ; $d < $nbDomaines ; $d++)
+            {
+                $domaines . "coucou";
+                $domaines . ", ";
+            }
+
+            $stage->setDomaine($domaines);
+            $stage->setDescription($domaines);
+            $stage->setEmail($faker->companyEmail);
+            $stage->setEntreprise($entreprise);
 
         //Ajout d'une formation au stage
-        $numTypeFormation = $faker->numberBetween($min=0, $max=2);
-        $stage->addFormation($tabTypeFormation[$numTypeFormation]);
+            $numTypeFormation = $faker->numberBetween($min=0, $max=2);
+            $stage->addFormation($tabTypeFormation[$numTypeFormation]);
+
          //Ajout du stage à la formation
-         $tabTypeFormation[$numTypeFormation]->addStage($stage);
-         $manager->persist($tabTypeFormation[$numTypeFormation]);
+            $tabTypeFormation[$numTypeFormation]->addStage($stage);
+            $manager->persist($tabTypeFormation[$numTypeFormation]);
 
          //Ajout du stage à l'entreprise
-         $entreprise->addEntreprise($stage);//La méthode n'a pas le bon nom (Mauvaise génération)
-         $manager->persist($entreprise);
+            $entreprise->addStage($stage);
+            $manager->persist($entreprise);
 
         $manager->persist($stage);
-
     }
 }      
 $manager->flush(); 
             
-        }
+    }
 
         
-    }
+}

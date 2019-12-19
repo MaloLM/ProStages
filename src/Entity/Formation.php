@@ -45,24 +45,24 @@ class Formation
 
     public function getNomCourt(): ?string
     {
-        return $this->NomCourt;
+        return $this->nomCourt;
     }
 
     public function setNomCourt(string $NomCourt): self
     {
-        $this->intitule = $NomCourt;
+        $this->nomCourt = $NomCourt;
 
         return $this;
     }
 
     public function getNomLong(): ?string
     {
-        return $this->NomLong;
+        return $this->nomLong;
     }
 
     public function setNomLong(string $NomLong): self
     {
-        $this->NomLong = $NomLong;
+        $this->nomLong = $NomLong;
 
         return $this;
     }
