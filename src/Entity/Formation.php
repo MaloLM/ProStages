@@ -21,12 +21,12 @@ class Formation
     /**
      * @ORM\Column(type="string", length=250)
      */
-    private $intitule;
+    private $nomCourt;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $courteDescription;
+    private $nomLong;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Stage", mappedBy="formations")
@@ -43,26 +43,26 @@ class Formation
         return $this->id;
     }
 
-    public function getIntitule(): ?string
+    public function getNomCourt(): ?string
     {
-        return $this->intitule;
+        return $this->NomCourt;
     }
 
-    public function setIntitule(string $intitule): self
+    public function setNomCourt(string $NomCourt): self
     {
-        $this->intitule = $intitule;
+        $this->intitule = $NomCourt;
 
         return $this;
     }
 
-    public function getCourteDescription(): ?string
+    public function getNomLong(): ?string
     {
-        return $this->courteDescription;
+        return $this->NomLong;
     }
 
-    public function setCourteDescription(string $courteDescription): self
+    public function setNomLong(string $NomLong): self
     {
-        $this->courteDescription = $courteDescription;
+        $this->NomLong = $NomLong;
 
         return $this;
     }
