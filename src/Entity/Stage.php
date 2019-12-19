@@ -44,11 +44,6 @@ class Stage
     private $formations;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $relation;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Entreprise", inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -134,18 +129,6 @@ class Stage
         if ($this->formations->contains($formation)) {
             $this->formations->removeElement($formation);
         }
-
-        return $this;
-    }
-
-    public function getRelation(): ?string
-    {
-        return $this->relation;
-    }
-
-    public function setRelation(string $relation): self
-    {
-        $this->relation = $relation;
 
         return $this;
     }
