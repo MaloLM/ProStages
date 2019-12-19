@@ -17,7 +17,6 @@ class ProStagesCController extends AbstractController
     public function index()
     {
       
-
         // récupérer le répository de l'entité StageFormation
 
         $repositoryAcceuil = $this->getDoctrine()->getRepository(Stage::class);
@@ -35,21 +34,19 @@ class ProStagesCController extends AbstractController
     /**
      * @Route("/entreprises", name="entreprises")
      */
-    
-        // récupérer le répository de l'entité Entreprise
-
-        $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
-        
-        // récuperer les ressources enregistrées en BD
-
-        $entreprises = $repositoryEntreprise->findAll();
-
-        // envoyer les ressources récupérées a la vue chargée de les afficher
-
         public function entreprises()
     {
-       return $this->render('pro_stages_c/entreprises.html.twig',['entreprises' => $entreprises $]);
+           // récupérer le répository de l'entité Entreprise
 
+           $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
+        
+           // récuperer les ressources enregistrées en BD
+   
+           $entreprises = $repositoryEntreprise->findAll();
+   
+           // envoyer les ressources récupérées a la vue chargée de les afficher
+   
+           return $this->render('pro_stages_c/entreprises.html.twig',['entreprises' => $entreprises]);
     }
 
     /**
@@ -67,7 +64,7 @@ class ProStagesCController extends AbstractController
 
         // envoyer les ressources récupérées a la vue chargée de les afficher
 
-        return $this->render('pro_stages_c/formations.html.twig',['formations' => $formations ]);
+        return $this->render('pro_stages_c/formations.html.twig',['formations' => $formations]);
     }
 
 
