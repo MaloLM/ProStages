@@ -44,9 +44,9 @@ class AppFixtures extends Fixture
             $entreprise = new Entreprise();
             $entreprise->setNom($faker->company);
             $entreprise->setAdresse($faker->address);
-            $entreprise->setActivite($faker->sentence($nbWords =80, $variableNbWords = true));
+            $entreprise->setActivite($faker->jobTitle);
             $nomEntreprise = $entreprise->getNom();
-            
+
             //Préparation du nom de l'entreprise
             $nomEntreprise = str_replace(' ','_',$entreprise->getNom()); //Enlève les espace au nom d'entreprise
             $nomEntreprise = str_replace('.','',$nomEntreprise); //Enlève les points       
@@ -61,8 +61,9 @@ class AppFixtures extends Fixture
 
 
 //Definition des stages
-$nbStages = $faker->numberBetween($min = 1, $max = 3);
+
 foreach ($tabEntreprise as $entreprise){
+$nbStages = $faker->numberBetween($min = 1, $max = 5); 
     for ($i = 0 ; $i < $nbStages; $i++)
     {
         // ajouter a un stage a l'entreprise courante
@@ -70,16 +71,13 @@ foreach ($tabEntreprise as $entreprise){
             $stage = new Stage();
             $stage->setTitre($faker->sentence($nbWords =15, $variableNbWords = true));
 
-            $nbDomaines = $faker->numberBetween($min = 1, $max = 5);
-            $domaines = "";
-            for($d = 0 ; $d < $nbDomaines ; $d++)
-            {
-                $domaines . "coucou";
-                $domaines . ", ";
-            }
+            $stage->setDomaine($entreprise->getActivite()); 
 
-            $stage->setDomaine($domaines);
-            $stage->setDescription($domaines);
+        // ajout d'une description aléatoire
+            $nbMotsDesc = $faker->numberBetween($min = 10, $max = 150);
+            $stage->setDescription($faker->sentence($nbWords = $nbMotsDesc, $variableNbWords = true));
+
+        // ajout de l'adresse email puis lien avec l'entreprise    
             $stage->setEmail($faker->companyEmail);
             $stage->setEntreprise($entreprise);
 
