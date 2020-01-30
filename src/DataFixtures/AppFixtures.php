@@ -27,9 +27,8 @@ class AppFixtures extends Fixture
         $lpNum = new Formation();
         $lpNum->setNomCourt("Lp Num");
         $lpNum->setNomLong("License professionnel Métiers du Numérique");
-
+        
         $tabTypeFormation = array($dutInfo, $lpNum, $lpProg); //Tableau des formations
-
         foreach ($tabTypeFormation as $typeModule) {
             $manager->persist($typeModule);
         }
@@ -54,11 +53,8 @@ class AppFixtures extends Fixture
 
             //mettre dans tableau initialisé
             array_push($tabEntreprise, $entreprise);
-
             $manager->persist($entreprise);
         }
-        
-
 
 //Definition des stages
 
@@ -69,12 +65,11 @@ $nbStages = $faker->numberBetween($min = 1, $max = 5);
         // ajouter a un stage a l'entreprise courante
             //Création d'un stage
             $stage = new Stage();
-            $stage->setTitre($faker->sentence($nbWords =15, $variableNbWords = true));
-
+            $stage->setTitre($faker->sentence($nbWords =5, $variableNbWords = false));
             $stage->setDomaine($entreprise->getActivite()); 
 
         // ajout d'une description aléatoire
-            $nbMotsDesc = $faker->numberBetween($min = 10, $max = 150);
+            $nbMotsDesc = $faker->numberBetween($min = 10, $max = 100);
             $stage->setDescription($faker->sentence($nbWords = $nbMotsDesc, $variableNbWords = true));
 
         // ajout de l'adresse email puis lien avec l'entreprise    
@@ -96,9 +91,6 @@ $nbStages = $faker->numberBetween($min = 1, $max = 5);
         $manager->persist($stage);
     }
 }      
-$manager->flush(); 
-            
-    }
-
-        
+$manager->flush();        
+    }   
 }

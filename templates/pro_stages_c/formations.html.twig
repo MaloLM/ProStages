@@ -2,12 +2,9 @@
 
 {% block title %}formations{% endblock %}
 
-
-
-
 {% block contenu %}
 
- <div class = "px-2">
+ <div class = "px-5">
   <div class="card ">
       <h5 class="card-header">Offres de stages</h5>
       <div class="card-body">
@@ -20,23 +17,17 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">Chercher par formation</th>
-      
     </tr>
   </thead>
   <tbody>
     {% for formation in formations %}
     <tr>
       <th scope="row"><a href="{{path("tri_stage",{type:"formations",id:formation.id})}}">{{formation.nomLong}}</a></th> 
-     
     </tr>
     {%endfor%}
   </tbody>
 </table>
-
-                    
-
                   </div>
-
               </div>
           </div>
       </div>

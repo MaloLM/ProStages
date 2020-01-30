@@ -1,85 +1,70 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> ProStage : {% block title %}{% endblock %}</title>
+    {% block stylesheets %}
 
-        <title> ProStage : {% block title %}{% endblock %}</title>
-        {% block stylesheets %}
-  
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endblock %} {% block background %}
 
-        <!-- Bootstrap CSS-->
-          <link rel="stylesheet" 
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
-        crossorigin="anonymous">
-        {% endblock %}
+    <style>
+        body {
+            background-image: url('https://cdn.discordapp.com/attachments/601416273892605983/657353538921299969/google-original-material-image.jpg.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+    <!--Autre fond : https://9to5mac.com/wp-content/uploads/sites/6/2019/09/CATALINA-03.jpeg?resize=1472,1472 ou https://cdn.discordapp.com/attachments/601416273892605983/657353538921299969/google-original-material-image.jpg.png -->
 
+    {% endblock %}
 
-        {% block background %} 
-       
-          <style>
-            body {
-              background-image: url('https://cdn.discordapp.com/attachments/601416273892605983/657353538921299969/google-original-material-image.jpg.png');
-              background-repeat: no-repeat;
-              background-attachment: fixed;
-              background-size: cover;
-            }
-            </style> 
-            <!--Autre fond : https://9to5mac.com/wp-content/uploads/sites/6/2019/09/CATALINA-03.jpeg?resize=1472,1472 -->
-       
-          {% endblock %}
+</head>
 
-       
-        
-    </head>
-    <body>
-        {% block header %}
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">ProStages</a>
-        </nav>
-        {% endblock %}
+<body>
+    {% block header %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">ProStages</a>
+    </nav>
+    {% endblock %} 
+    
+    {% block menu %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Bienvenue</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <br>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/formations">Les formations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/entreprises">Les entreprises</a>
+                </li>
+                <div class = "px-5">
+                <li class="nav-item">
+                    <a class="btn btn-outline-dark text-dark" href="https://github.com/MaloLM/ProStages2">Le Github</a>
+                </li>
+                </div>
+            </ul>
+        </div>
+    </nav>
+    <br> 
+    {% endblock %} 
+    {% block contenu %}{% endblock %} 
 
-        {% block menu %}
+    {% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    {% endblock %}
+</body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Bienvenue</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-     <br>
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/formations">Les formations</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/entreprises">Les entreprises</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<br>
-        {% endblock %}
-
-        {% block contenu %}
-
-
-        {% endblock %}
-
-        {% block footer %}
-      
-        {% endblock %}
-
-
-        {% block javascripts %}
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        {% endblock %}
-    </body>
 </html>

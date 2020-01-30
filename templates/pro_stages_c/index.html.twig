@@ -1,58 +1,53 @@
-{% extends 'base.html.twig' %} {% block title %}accueil{% endblock %} 
+{% extends 'base.html.twig' %} 
+{% block title %}accueil{% endblock %}
 {% block contenu %}
-<div class = "px-5">
-  <div class="card ">
-      <h5 class="card-header">Offres de stages</h5>
-      <div class="card-body">
 
-          <div class="container-fluid">
-              <div class="row">
-                  <div class="col-md-12">
-                      <!--collapes-->
-                      {%for stage in stages%}
-
-                      <div class="accordion" id="accordionExample">
-                          <div class="card">
-                              <div class="card-header" id="headingOne">
-                                  <h5 class="mb-0">
-                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+<div class="px-5">
+    <div class="card ">
+        <h5 class="card-header">Offres de stages</h5>
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--collapes-->
+                        {% set idCollapse = "c" %}
+                        {% for stage in stages %}
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id={{stage.id}}>
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c-{{ stage.id }}" aria-expanded="false" aria-controls="#c-{{ stage.id }}">
                                           {{stage.titre}}
                                         </button>
                                       </h5>
-                              </div>
-
-                              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                  <div class="card-body">
-                                    {{stage.description}}
-                                    <div class="col-md-12">
-                                    <br>
-    <button type="button" class="btn btn-success py-2">En savoir plus</button>
-                              </div>
-                              <br/>
-
-
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                      {%endfor%}
-
-                  </div>
-
-              </div>
-          </div>
-      </div>
-
-      <a href="#haut_de_page" class="btn btn-primary px-3">Remonter en haut de page</a>
-      <br>
-      <br>
-  </div>
-  </div>
+                                </div>
+                                <div id="c-{{ stage.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        {{stage.description}}
+                                        <div class="col-md-12">
+                                            <br>
+                                            <button type="button" class="btn btn-success py-2" href = "/afficher/stage/{{stage.id}}">En savoir plus</button>
+                                        </div>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% set idCollapse = idCollapse ~ "c" %}
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#haut_de_page" class="btn btn-primary px-3">Remonter en haut de page</a>
+        <br>
+        <br>
+    </div>
+</div>
 </div>
 <br>
 <br>
 <br>
 <br>
 <br>
-{% endblock %}
+ {% endblock %}

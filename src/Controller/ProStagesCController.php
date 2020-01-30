@@ -16,17 +16,13 @@ class ProStagesCController extends AbstractController
      */
     public function index()
     {
-      
         // récupérer le répository de l'entité StageFormation
-
         $repositoryAcceuil = $this->getDoctrine()->getRepository(Stage::class);
 
-        // récuperer les ressources enregistrées en BD
-        
+        // récuperer les ressources enregistrées en BD 
         $stages = $repositoryAcceuil->findAll();
 
         // envoyer les ressources récupérées a la vue chargée de les afficher
-
         return $this->render('pro_stages_c/index.html.twig',['stages' => $stages]);
     }
     
@@ -36,15 +32,12 @@ class ProStagesCController extends AbstractController
         public function entreprises()
     {
            // récupérer le répository de l'entité Entreprise
-
            $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
         
            // récuperer les ressources enregistrées en BD
-   
            $entreprises = $repositoryEntreprise->findAll();
    
            // envoyer les ressources récupérées a la vue chargée de les afficher
-   
            return $this->render('pro_stages_c/entreprises.html.twig',['entreprises' => $entreprises]);
     }
 
@@ -54,15 +47,12 @@ class ProStagesCController extends AbstractController
     public function formations()
     {
         // récupérer le répository de l'entité Formation
-
         $repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
         
         // récuperer les ressources enregistrées en BD
-
         $formations = $repositoryFormation->findAll();
 
         // envoyer les ressources récupérées a la vue chargée de les afficher
-
         return $this->render('pro_stages_c/formations.html.twig',['formations' => $formations]);
     }
 
@@ -74,15 +64,12 @@ class ProStagesCController extends AbstractController
     {
     
         // récupérer le répository de l'entité Stage
-
         $repositoryAffStage = $this->getDoctrine()->getRepository(Stage::class);
         
         // récuperer les ressources enregistrées en BD
-
         $ressourcesStages = $repositoryAffStage->findAll();
 
         // envoyer les ressources récupérées a la vue chargée de les afficher
-
         return $this->render('pro_stages_c/affichageRessources.html.twig',[
             'id' => $id, 
             'ressource' => $ressourcesStages ]);
@@ -95,30 +82,21 @@ class ProStagesCController extends AbstractController
      */
     public function stages_tries($type,$id)
     {
-
-
         // récuperer les ressources enregistrées en BD  // récupérer le répository de l'entité Stage
-
 
         if($type=="entreprises")
         {
-
             $repoStages = $this->getDoctrine()->getRepository(Stage::class);
             $stages = $repoStages->findByEntreprise($id);
-
         }
         elseif($type=="formations")
         {
-
             $repoFormation = $this->getDoctrine()->getRepository(Formation::class);
             $stages = $repoFormation->find($id)->getStages();
-
         }
+
         // envoyer les ressources récupérées a la vue chargée de les afficher
-
         return $this->render('pro_stages_c/index.html.twig',[
- 
             'stages' => $stages]);
-
     }
 }

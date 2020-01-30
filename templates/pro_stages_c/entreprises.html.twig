@@ -4,13 +4,12 @@
     entreprises
 {% endblock %}
 
-
 {% block contenu %}
-<div class = "px-2">
+
+<div class = "px-5">
   <div class="card ">
       <h5 class="card-header">Offres de stages</h5>
       <div class="card-body">
-
           <div class="container-fluid">
               <div class="row">
                   <div class="col-md-12">
@@ -19,21 +18,26 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">Chercher par entreprise</th>
-      
     </tr>
   </thead>
   <tbody>
     {% for entreprise in entreprises %}
-    <tr>
-      <th scope="row"><a href="{{path("tri_stage",{type:"entreprises",id:entreprise.id})}}">{{entreprise.nom}}</a></th> 
-     
+
+    {% set nbStages = 0 %}
+
+    {% for stage in entreprise %}
+
+    {% set nbStages = loop.length %}
+
+    {% endfor %}
+      <tr>
+      <th scope="row"><a href="{{path("tri_stage",{type:"entreprises",id:entreprise.id})}}">{{entreprise.nom}}</a><button type="button" class="btn btn-primary mx-5">
+                    Nombre de stages : <span class="badge badge-light"> {{ nbStages }}</span>
+    </button></th> 
     </tr>
-    {%endfor%}
+    {% endfor %}
   </tbody>
 </table>
-
-                    
-
                   </div>
 
               </div>
@@ -47,5 +51,5 @@
 <br>
 <br>
 <br>
-  
+
 {% endblock %}
