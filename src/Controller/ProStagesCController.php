@@ -78,16 +78,18 @@ class ProStagesCController extends AbstractController
 
 
     /**
-     * @Route("/tri/{type}/{id}", name="tri_stage")
+     * @Route("/tri/{type}/{nom}", name="tri_stage")
      */
-    public function stages_tries($type,$id)
+    public function stages_tries($type,$nom)
     {
         // récuperer les ressources enregistrées en BD  // récupérer le répository de l'entité Stage
 
         if($type=="entreprises")
         {
             $repoStages = $this->getDoctrine()->getRepository(Stage::class);
-            $stages = $repoStages->findByEntreprise($id);
+            //$stages = $repoStages->findByEntreprise($id);
+            $stages = $repoStages->findStageByEntreprise($nom);
+            
         }
         elseif($type=="formations")
         {

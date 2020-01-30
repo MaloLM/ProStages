@@ -31,8 +31,8 @@
 
     {% endfor %}
       <tr>
-      <th scope="row"><a href="{{path("tri_stage",{type:"entreprises",id:entreprise.id})}}">{{entreprise.nom}}</a><button type="button" class="btn btn-primary mx-5">
-                    Nombre de stages : <span class="badge badge-light"> {{ nbStages }}</span>
+      <th scope="row"><a href="{{path("tri_stage",{type:"entreprises",nom:entreprise.nom})}}">{{entreprise.nom}}</a><button type="button" class="btn btn-primary mx-5">
+                    Nombre de stages : <span class="badge badge-light"> {{ entreprise.stages | length }}</span>
     </button></th> 
     </tr>
     {% endfor %}
