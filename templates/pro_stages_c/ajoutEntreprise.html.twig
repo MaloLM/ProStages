@@ -16,22 +16,29 @@
                     {{ form_start (vueFormulaireEntreprise) }}
 <div>
                         {{ form_label (vueFormulaireEntreprise.nom) }} 
-                        {{ form_errors (vueFormulaireEntreprise.nom) }} 
+                        {{ form_errors (vueFormulaireEntreprise.nom) }}
+                        <br> 
                         {{ form_widget (vueFormulaireEntreprise.nom) }} 
 </div>
+<br>
 <div>
                         {{ form_label (vueFormulaireEntreprise.activite) }} 
                         {{ form_errors (vueFormulaireEntreprise.activite) }} 
+                        <br>
                         {{ form_widget (vueFormulaireEntreprise.activite) }} 
 </div>
+<br>
 <div>
                         {{ form_label (vueFormulaireEntreprise.adresse) }} 
-                        {{ form_errors (vueFormulaireEntreprise.adresse) }} 
+                        {{ form_errors (vueFormulaireEntreprise.adresse) }}
+                        <br> 
                         {{ form_widget (vueFormulaireEntreprise.adresse) }} 
 </div>
+<br>
 <div>
                         {{ form_label (vueFormulaireEntreprise.siteWeb) }} 
                         {{ form_errors (vueFormulaireEntreprise.siteWeb) }} 
+                        <br>
                         {{ form_widget (vueFormulaireEntreprise.siteWeb) }} 
 </div>
                     {{ form_end (vueFormulaireEntreprise) }}        

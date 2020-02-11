@@ -5,9 +5,13 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use App\Entity\Stage;
 use App\Entity\Formation;
 use App\Entity\Entreprise;
+
 
 class ProStagesCController extends AbstractController
 {
@@ -115,10 +119,10 @@ class ProStagesCController extends AbstractController
 
         // creation d'un objet formulaire pour saisir un stage
         $formulaireEntreprise = $this -> createFormBuilder($entreprise)
-                                 -> add ('nom')
-                                 -> add ('activite')
-                                 -> add ('adresse')
-                                 -> add ('siteWeb')
+                                 -> add ('nom',TextType::class)
+                                 -> add ('activite',TextType::class)
+                                 -> add ('adresse',TextareaType::class)
+                                 -> add ('siteWeb',UrlType::class)
                                  -> getForm();
 
         // générer la vue représentant le formulaire
