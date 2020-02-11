@@ -22,7 +22,7 @@
   <tbody>
     {% for formation in formations %}
     <tr>
-      <th scope="row"><a href="{{path("tri_stage",{type:"formations",id:formation.id})}}">{{formation.nomLong}}</a></th> 
+      <th scope="row"><a href="{{path("tri_stage",{type:"formations",nom:formation.nomCourt})}}">{{formation.nomLong}}</a></th> 
     </tr>
     {%endfor%}
   </tbody>

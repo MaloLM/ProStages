@@ -62,6 +62,22 @@ class StageRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+
+     /**
+      * @return Stage[] Returns an array of Stage objects
+      */
+
+    public function findStageByFormation($nomFormation)
+    {
+        return $this->createQueryBuilder('s') // s pour stage
+            ->join('s.formations','f')
+            ->where('f.nomCourt = :nomFormation')
+            ->setParameter('nomFormation', $nomFormation)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
    
     /**
      * @return Stage[] Returns an array of Stage objects

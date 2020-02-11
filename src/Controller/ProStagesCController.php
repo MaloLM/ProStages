@@ -93,12 +93,40 @@ class ProStagesCController extends AbstractController
         }
         elseif($type=="formations")
         {
-            $repoFormation = $this->getDoctrine()->getRepository(Formation::class);
-            $stages = $repoFormation->find($id)->getStages();
+            //$repoFormation = $this->getDoctrine()->getRepository(Formation::class);
+            //$stages = $repoFormation->find($id)->getStages();
+            $repoStages = $this->getDoctrine()->getRepository(Stage::class);
+            $stages = $repoStages->findStageByFormation($nom);
         }
 
         // envoyer les ressources récupérées a la vue chargée de les afficher
         return $this->render('pro_stages_c/index.html.twig',[
             'stages' => $stages]);
+    }
+
+
+      /**
+     * @Route("/ajouter/entreprise", name="ajouterUneEntreprise")
+     */
+    public function ajouterUneEntreprise()
+    {
+        // creation d'un stage initialement vierge
+        $entreprise = new Entreprise();
+
+        // creation d'un objet formulaire pour saisir un stage
+        $formulaireEntreprise = $this -> createFormBuilder($entreprise)
+                                 -> add ('nom')
+                                 -> add ('activite')
+                                 -> add ('adresse')
+                                 -> add ('siteWeb')
+                                 -> getForm();
+
+        // générer la vue représentant le formulaire
+        $vueFormulaireEntreprise = $formulaireEntreprise -> createView();
+                    
+        // afficher la page d'ajout d'une ressource 
+        return $this->render('pro_stages_c/ajoutEntreprise.html.twig',
+        ['vueFormulaireEntreprise' => $vueFormulaireEntreprise]);
+        
     }
 }

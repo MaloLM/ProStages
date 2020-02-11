@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Ajouter une entrprise
+{% endblock %}
+
+{% block contenu %}
+
+<div class = "px-5">
+  <div class="card ">
+      <h5 class="card-header">Ajouter un stage</h5>
+      <div class="card-body">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-md-12">
+                    {{ form_start (vueFormulaireEntreprise) }}
+<div>
+                        {{ form_label (vueFormulaireEntreprise.nom) }} 
+                        {{ form_errors (vueFormulaireEntreprise.nom) }} 
+                        {{ form_widget (vueFormulaireEntreprise.nom) }} 
+</div>
+<div>
+                        {{ form_label (vueFormulaireEntreprise.activite) }} 
+                        {{ form_errors (vueFormulaireEntreprise.activite) }} 
+                        {{ form_widget (vueFormulaireEntreprise.activite) }} 
+</div>
+<div>
+                        {{ form_label (vueFormulaireEntreprise.adresse) }} 
+                        {{ form_errors (vueFormulaireEntreprise.adresse) }} 
+                        {{ form_widget (vueFormulaireEntreprise.adresse) }} 
+</div>
+<div>
+                        {{ form_label (vueFormulaireEntreprise.siteWeb) }} 
+                        {{ form_errors (vueFormulaireEntreprise.siteWeb) }} 
+                        {{ form_widget (vueFormulaireEntreprise.siteWeb) }} 
+</div>
+                    {{ form_end (vueFormulaireEntreprise) }}        
+ 
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}
