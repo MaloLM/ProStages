@@ -5,9 +5,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Stage;
 use App\Entity\Formation;
 use App\Entity\Entreprise;
@@ -112,7 +114,7 @@ class ProStagesCController extends AbstractController
       /**
      * @Route("/ajouter/entreprise", name="ajouterUneEntreprise")
      */
-    public function ajouterUneEntreprise()
+    public function ajouterUneEntreprise(Request $requetteHttp, ObjectManager $manager)
     {
         // creation d'un stage initialement vierge
         $entreprise = new Entreprise();
@@ -127,6 +129,21 @@ class ProStagesCController extends AbstractController
 
         // générer la vue représentant le formulaire
         $vueFormulaireEntreprise = $formulaireEntreprise -> createView();
+
+        // analyse de la dernière requette http  + récupération des attributs de l'object concerné 
+
+        $formulaireEntreprise -> handleRequest($requetteHttp);
+
+        //traiter les données du formulaire s'il a été soumi
+        if ($formulaireEntreprise -> isSubmitted() )
+        {
+            // enregistrer l'entreprise en BD
+            $manager -> persist($entreprise);
+            $manager->flush();
+
+            //redirection de l'utilisateur vers la page affichant la list des entreprises
+            return $this->redirectToRoute('entreprises'); 
+        }
                     
         // afficher la page d'ajout d'une ressource 
         return $this->render('pro_stages_c/ajoutEntreprise.html.twig',

@@ -128,7 +128,6 @@ class Entreprise
                 $stage->setEntreprise(null);
             }
         }
-
         return $this;
     }
 }
