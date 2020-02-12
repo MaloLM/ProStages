@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Asserts;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -21,22 +21,31 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=200)
-     * @Assert\NotBlank
+     * @Assert\Length(
+     * min = 4,
+     * max = 255,
+     * minMessage = "le nom de l'entreprise doit faire au moins {{limit}} caractères.",
+     * maxMessage = "le nom de l'entreprise doit faire au plus {{limit}} caractères."
+     * )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\NotBlank(message="l'activité de l'entreprise doit être renseigné.")
      */
     private $activite;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="l'adresse de l'entreprise doit être renseigné.")
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=250)
+     * @Assert\NotBlank(message="le side web de l'entreprise doit être renseigné.")
+     * @Assert\Url(message = "le format de l'URL doit êtrr respecté !")
      */
     private $siteWeb;
 

@@ -129,15 +129,12 @@ class ProStagesCController extends AbstractController
                                  -> add ('siteWeb',UrlType::class)
                                  -> getForm();
 
-        // générer la vue représentant le formulaire
-        $vueFormulaireEntreprise = $formulaireEntreprise -> createView();
-
         // analyse de la dernière requette http  + récupération des attributs de l'object concerné 
 
         $formulaireEntreprise -> handleRequest($requetteHttp);
 
         //traiter les données du formulaire s'il a été soumi
-        if ($formulaireEntreprise -> isSubmitted() )
+        if ($formulaireEntreprise -> isSubmitted() && $formulaireEntreprise -> isValid() )
         {
             // enregistrer l'entreprise en BD
             $manager -> persist($entreprise);
@@ -146,6 +143,9 @@ class ProStagesCController extends AbstractController
             //redirection de l'utilisateur vers la page affichant la list des entreprises
             return $this->redirectToRoute('entreprises'); 
         }
+
+        // générer la vue représentant le formulaire
+        $vueFormulaireEntreprise = $formulaireEntreprise -> createView();
                     
         // afficher la page d'ajout d'une ressource 
         return $this->render('pro_stages_c/ajoutModifEntreprise.html.twig',
@@ -168,15 +168,12 @@ class ProStagesCController extends AbstractController
                                  -> add ('siteWeb',UrlType::class)
                                  -> getForm();
 
-        // générer la vue représentant le formulaire
-        $vueFormulaireEntreprise = $formulaireEntreprise -> createView();
-
         // analyse de la dernière requette http  + récupération des attributs de l'object concerné 
 
         $formulaireEntreprise -> handleRequest($requetteHttp);
 
         //traiter les données du formulaire s'il a été soumi
-        if ($formulaireEntreprise -> isSubmitted() )
+        if ($formulaireEntreprise -> isSubmitted() && $formulaireEntreprise -> isValid() )
         {
             // enregistrer l'entreprise en BD
             $manager -> persist($entreprise);
@@ -185,15 +182,16 @@ class ProStagesCController extends AbstractController
             //redirection de l'utilisateur vers la page affichant la list des entreprises
             return $this->redirectToRoute('entreprises'); 
         }
+
+         // générer la vue représentant le formulaire
+         $vueFormulaireEntreprise = $formulaireEntreprise -> createView();
+
                     
         // afficher la page d'ajout d'une ressource 
         return $this->render('pro_stages_c/ajoutModifEntreprise.html.twig',
         ['vueFormulaireEntreprise' => $vueFormulaireEntreprise,'action'=>"modifier"]);
         
     }
-
-
-
 }
 
 
