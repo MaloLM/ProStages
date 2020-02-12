@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if action == "ajouter" %}
+        Ajouter une entreprise
+    {% else %}  
+        Modifier une entreprise
+    {% endif %}
+{% endblock %}
+
+{% block contenu %}
+
+<div class = "px-5">
+  <div class="card ">
+      <h5 class="card-header"> {% if action == "ajouter" %}
+                                    Ajouter une entreprise
+                                {% else %}  
+                                    Modifier une entreprise
+                                {% endif %}</h5>
+      <div class="card-body">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-md-12">
+                    {{ form_start (vueFormulaireEntreprise) }}
+<div>
+                        {{ form_label (vueFormulaireEntreprise.nom) }} 
+                        {{ form_errors (vueFormulaireEntreprise.nom) }}
+                        <br> 
+                        {{ form_widget (vueFormulaireEntreprise.nom, {'attr':{'placeholder':"Nom de l'entreprise"}}) }} 
+</div>
+<br>
+<div>
+                        {{ form_label (vueFormulaireEntreprise.activite) }} 
+                        {{ form_errors (vueFormulaireEntreprise.activite) }} 
+                        <br>
+                        {{ form_widget (vueFormulaireEntreprise.activite, {'attr':{'placeholder':"Domaine d'activité de l'entreprise"}}) }} 
+</div>
+<br>
+<div>
+                        {{ form_label (vueFormulaireEntreprise.adresse) }} 
+                        {{ form_errors (vueFormulaireEntreprise.adresse) }}
+                        <br> 
+                        {{ form_widget (vueFormulaireEntreprise.adresse, {'attr':{'placeholder':"Adresse postale de l'entreprise"}}) }} 
+</div>
+<br>
+<div>
+                        {{ form_label (vueFormulaireEntreprise.siteWeb) }} 
+                        {{ form_errors (vueFormulaireEntreprise.siteWeb) }} 
+                        <br>
+                        {{ form_widget (vueFormulaireEntreprise.siteWeb, {'attr':{'placeholder':"Adresse URL du site de l'entreprise"}}) }} 
+                    
+</div>
+<br>
+<div>
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+</div>
+                    {{ form_end (vueFormulaireEntreprise) }}        
+ 
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}

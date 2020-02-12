@@ -13,6 +13,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Stage;
 use App\Entity\Formation;
 use App\Entity\Entreprise;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Email;
 
 
 class ProStagesCController extends AbstractController
@@ -146,8 +148,53 @@ class ProStagesCController extends AbstractController
         }
                     
         // afficher la page d'ajout d'une ressource 
-        return $this->render('pro_stages_c/ajoutEntreprise.html.twig',
-        ['vueFormulaireEntreprise' => $vueFormulaireEntreprise]);
+        return $this->render('pro_stages_c/ajoutModifEntreprise.html.twig',
+        ['vueFormulaireEntreprise' => $vueFormulaireEntreprise,'action'=>"ajouter"]);
         
     }
+
+
+  /**
+     * @Route("/modifier/entreprise/{id}", name="modifierUneEntreprise")
+     */
+    public function modifierUneEntreprise(Request $requetteHttp, ObjectManager $manager, Entreprise $entreprise)
+    {
+    
+        // creation d'un objet formulaire pour saisir un stage
+        $formulaireEntreprise = $this -> createFormBuilder($entreprise)
+                                 -> add ('nom')
+                                 -> add ('activite')
+                                 -> add ('adresse',TextareaType::class)
+                                 -> add ('siteWeb',UrlType::class)
+                                 -> getForm();
+
+        // générer la vue représentant le formulaire
+        $vueFormulaireEntreprise = $formulaireEntreprise -> createView();
+
+        // analyse de la dernière requette http  + récupération des attributs de l'object concerné 
+
+        $formulaireEntreprise -> handleRequest($requetteHttp);
+
+        //traiter les données du formulaire s'il a été soumi
+        if ($formulaireEntreprise -> isSubmitted() )
+        {
+            // enregistrer l'entreprise en BD
+            $manager -> persist($entreprise);
+            $manager->flush();
+
+            //redirection de l'utilisateur vers la page affichant la list des entreprises
+            return $this->redirectToRoute('entreprises'); 
+        }
+                    
+        // afficher la page d'ajout d'une ressource 
+        return $this->render('pro_stages_c/ajoutModifEntreprise.html.twig',
+        ['vueFormulaireEntreprise' => $vueFormulaireEntreprise,'action'=>"modifier"]);
+        
+    }
+
+
+
 }
+
+
+
