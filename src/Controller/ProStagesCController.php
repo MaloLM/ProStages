@@ -121,8 +121,8 @@ class ProStagesCController extends AbstractController
 
         // creation d'un objet formulaire pour saisir un stage
         $formulaireEntreprise = $this -> createFormBuilder($entreprise)
-                                 -> add ('nom',TextType::class)
-                                 -> add ('activite',TextType::class)
+                                 -> add ('nom')
+                                 -> add ('activite')
                                  -> add ('adresse',TextareaType::class)
                                  -> add ('siteWeb',UrlType::class)
                                  -> getForm();
