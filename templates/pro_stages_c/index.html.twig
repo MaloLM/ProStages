@@ -2,9 +2,9 @@
 {% block title %}accueil{% endblock %}
 {% block contenu %}
 
-<div class="px-5">
+<div class="px-5" >
     <div class="card ">
-        <h5 class="card-header">Offres de stages</h5>
+        <h5 class="card-header" id="haut_de_page">Offres de stages</h5>
         <div class="card-body">
             <div class="container-fluid">
                 <div class="row">
@@ -17,7 +17,7 @@
                                 <div class="card-header" id={{stage.id}}>
                                     <h5 class="mb-0">
                                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#c-{{ stage.id }}" aria-expanded="false" aria-controls="#c-{{ stage.id }}">
-                                          {{stage.titre}}
+                                          {{stage.titre}} - {{stage.entreprise.nom}}
                                         </button>
                                       </h5>
                                 </div>
@@ -26,7 +26,7 @@
                                         {{stage.description}}
                                         <div class="col-md-12">
                                             <br>
-                                            <button type="button" class="btn btn-success py-2" href = "/afficher/stage/{{stage.id}}">En savoir plus</button>
+                                            <a type="button" class="btn btn-success py-2" href = "/afficher/stage/{{stage.id}}">En savoir plus</a>
                                         </div>
                                         <br/>
                                     </div>

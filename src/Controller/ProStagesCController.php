@@ -28,7 +28,7 @@ class ProStagesCController extends AbstractController
         $repositoryAcceuil = $this->getDoctrine()->getRepository(Stage::class);
 
         // récuperer les ressources enregistrées en BD 
-        $stages = $repositoryAcceuil->findAll();
+        $stages = $repositoryAcceuil->findStagesEntreprise();
 
         // envoyer les ressources récupérées a la vue chargée de les afficher
         return $this->render('pro_stages_c/index.html.twig',['stages' => $stages]);
@@ -70,20 +70,17 @@ class ProStagesCController extends AbstractController
      */
     public function afficher_stage($id)
     {
-    
         // récupérer le répository de l'entité Stage
         $repositoryAffStage = $this->getDoctrine()->getRepository(Stage::class);
         
         // récuperer les ressources enregistrées en BD
-        $ressourcesStages = $repositoryAffStage->findAll();
+        $stages = $repositoryAffStage->findAll();
 
         // envoyer les ressources récupérées a la vue chargée de les afficher
-        return $this->render('pro_stages_c/affichageRessources.html.twig',[
+        return $this->render('pro_stages_c/affichageStage.html.twig',[
             'id' => $id, 
-            'ressource' => $ressourcesStages ]);
-
+            'stages' => $stages ]);
     }
-
 
     /**
      * @Route("/tri/{type}/{nom}", name="tri_stage")

@@ -45,7 +45,7 @@ class Entreprise
     /**
      * @ORM\Column(type="string", length=250)
      * @Assert\NotBlank(message="le side web de l'entreprise doit être renseigné.")
-     * @Assert\Url(message = "le format de l'URL doit êtrr respecté !")
+     * @Assert\Url(message = "le format de l'URL doit être respecté !")
      */
     private $siteWeb;
 
