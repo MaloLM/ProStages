@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {% if action == "ajouter" %}
+        Ajouter un stage
+    {% else %}  
+        Modifier un stage
+    {% endif %}
+{% endblock %}
+
+{% block contenu %}
+
+<div class="px-5">
+    <div class="card ">
+        <h5 class="card-header"> {{stage.titre}}</h5>
+        <div class="card-body">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                       
+                        <-- contenu -->
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br> 
+{% endblock %}

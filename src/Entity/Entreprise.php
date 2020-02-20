@@ -21,6 +21,7 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\NotBlank(message="le nom de l'entreprise doit être renseigné.")
      * @Assert\Length(
      * min = 4,
      * max = 255,
@@ -44,8 +45,8 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=250)
-     * @Assert\NotBlank(message="le side web de l'entreprise doit être renseigné.")
      * @Assert\Url(message = "le format de l'URL doit être respecté !")
+     * @Assert\NotBlank(message="le side web de l'entreprise doit être renseigné.")
      */
     private $siteWeb;
 
@@ -69,7 +70,7 @@ class Entreprise
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->nom = $nom;
 
@@ -81,7 +82,7 @@ class Entreprise
         return $this->activite;
     }
 
-    public function setActivite(string $activite): self
+    public function setActivite(?string $activite): self
     {
         $this->activite = $activite;
 
@@ -93,7 +94,7 @@ class Entreprise
         return $this->adresse;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setAdresse(?string $adresse): self
     {
         $this->adresse = $adresse;
 
@@ -105,7 +106,7 @@ class Entreprise
         return $this->siteWeb;
     }
 
-    public function setSiteWeb(string $siteWeb): self
+    public function setSiteWeb(?string $siteWeb): self
     {
         $this->siteWeb = $siteWeb;
 

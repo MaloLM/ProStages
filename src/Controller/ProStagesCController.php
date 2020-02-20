@@ -16,6 +16,7 @@ use App\Entity\Entreprise;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
 use App\Form\EntrepriseType;
+use App\Form\StageType;
 
 
 class ProStagesCController extends AbstractController
@@ -110,7 +111,7 @@ class ProStagesCController extends AbstractController
      */
     public function ajouterUneEntreprise(Request $requetteHttp, ObjectManager $manager)
     {
-        // creation d'un stage initialement vierge
+        // creation d'une entreprise initialement vierge
         $entreprise = new Entreprise();
 
         // creation d'un objet formulaire pour saisir un stage
@@ -150,7 +151,8 @@ class ProStagesCController extends AbstractController
      */
     public function modifierUneEntreprise(Request $requetteHttp, ObjectManager $manager, Entreprise $entreprise)
     {
-    
+      
+
         // creation d'un objet formulaire pour saisir un stage
         $formulaireEntreprise = $this -> createForm(EntrepriseType::class, $entreprise);
                                  /*-> add ('nom')
@@ -181,6 +183,42 @@ class ProStagesCController extends AbstractController
         // afficher la page d'ajout d'une ressource 
         return $this->render('pro_stages_c/ajoutModifEntreprise.html.twig',
         ['vueFormulaireEntreprise' => $vueFormulaireEntreprise,'action'=>"modifier"]);
+        
+    }
+    /**
+     * @Route("/ajouter/stage", name="ajouterUnStage")
+     */
+    public function ajouterUnStage(Request $requetteHttp, ObjectManager $manager)
+    {
+        // creation d'un stage initialement vierge
+
+        $stage = new Stage();
+
+        // creation d'un objet formulaire pour saisir un stage
+        $formulaireAjoutStage = $this -> createForm(StageType::class, $stage);
+                              
+        // analyse de la dernière requette http  + récupération des attributs de l'object concerné 
+
+        $formulaireAjoutStage -> handleRequest($requetteHttp);
+
+        //traiter les données du formulaire s'il a été soumi
+        if ($formulaireAjoutStage -> isSubmitted() && $formulaireAjoutStage -> isValid() )
+        {
+            // enregistrer l'entreprise en BD
+            $manager -> persist($stage);
+            $manager->flush();
+
+            //redirection de l'utilisateur vers la page affichant la list des entreprises
+            return $this->redirectToRoute('entreprises'); 
+        }
+
+         // générer la vue représentant le formulaire
+         $vueFormulaireAjoutStage = $formulaireAjoutStage -> createView();
+
+                    
+        // afficher la page d'ajout d'une ressource 
+        return $this->render('pro_stages_c/ajoutModifEntreprise.html.twig',
+        ['vueFormulaireEntreprise' => $vueFormulaireAjoutStage,'action'=>"ajouter"]);
         
     }
 }
