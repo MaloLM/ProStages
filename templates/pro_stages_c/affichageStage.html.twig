@@ -14,16 +14,19 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                      <div>
-                        <div> <strong>- Entreprise :</strong> {{stage.entreprise.nom}}<br>  </div><br>
-                        <div> ️<strong>- Domaine :</strong> {{stage.domaine}}<br>  </div><br>
-                        <div> <strong>- Description du stage :</strong> {{stage.description}}<br>  </div><br>
-                        <div> <strong>- Adresse e-mail :</strong> {{stage.email}}    </div>
-                    
                        
-                         
-                        </div>
-
+                        ⚫️<strong>Source de l'offre : </strong> {{stage.entreprise.nom}}<br><br>
+                        ⚫️<strong>Domaine : </strong> {{stage.domaine}}<br><br>
+                        ⚫️<strong>Description du stage : </strong> {{stage.description}}<br><br>
+                        ⚫️<strong>E-mail de contact : </strong> {{stage.email}}<br><br>
+                        ⚫️<strong>Formations : </strong>
+                        {% for formationCourante in stage.formations %}
+                            {% if loop.last %}
+                                {{ formationCourante.nomCourt }}.
+                            {% else %}
+                                {{ formationCourante.nomCourt }}, 
+                            {% endif %}
+                        {% endfor %}
 
 
                     </div>

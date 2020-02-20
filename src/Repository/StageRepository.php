@@ -101,10 +101,8 @@ class StageRepository extends ServiceEntityRepository
     /**
      * @return Stage[] Returns an array of Stage objects
      */
-     /*
-    public function findStageByFormation($value)
+    public function findStageByFormationDQL($nomFormation)
     {
-
         // Recuperation du gestionnaire d'entité
 
         $gestionnaireEntite = $this->getEntityManager();
@@ -113,12 +111,36 @@ class StageRepository extends ServiceEntityRepository
 
         $requete = $gestionnaireEntite ->createQuery('
         SELECT s
-        FROM App/Entity/Stages
-        JOIN e
-        WHERE 
+        FROM App\Entity\Stage s
+        JOIN s.formations f
+        WHERE f.nomCourt = :nomFormation
         ');
+
+    // definition de la valeur du paramètre
+    $requete ->setParameter('nomFormation',$nomFormation);
+
 
         // Execution de la requete et envoie des résultats
         return $requete->execute();
-    }*/
+    }
+    /**
+      * @return Stage[] Returns an array of Stage objects
+      */
+    
+      public function findAll()
+      {
+        //Récupération du gestionnaire d'entité
+        $entityManager = $this->getEntityManager();
+
+        //Construction de la requête
+        $requete = $entityManager->createQuery(
+            'SELECT s, e
+             FROM App\Entity\Stage s
+             JOIN s.entreprise e'
+        );
+
+        //Execution de la requête
+        return $requete->execute();
+      }
+    
 }

@@ -15,6 +15,7 @@ use App\Entity\Formation;
 use App\Entity\Entreprise;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
+use App\Form\EntrepriseType;
 
 
 class ProStagesCController extends AbstractController
@@ -70,9 +71,9 @@ class ProStagesCController extends AbstractController
      */
     public function afficher_stage(Stage $stage)
     {
-       
-        // envoyer les ressources récupérées a la vue chargée de les afficher
-        return $this->render('pro_stages_c/affichageStage.html.twig',[
+        
+    // envoyer les ressources récupérées a la vue chargée de les afficher
+        return $this->render('pro_stages_c/affichageStage.html.twig',[ 
             'stage' => $stage ]);
     }
 
@@ -113,12 +114,12 @@ class ProStagesCController extends AbstractController
         $entreprise = new Entreprise();
 
         // creation d'un objet formulaire pour saisir un stage
-        $formulaireEntreprise = $this -> createFormBuilder($entreprise)
-                                 -> add ('nom')
+        $formulaireEntreprise = $this -> createForm(EntrepriseType::class, $entreprise);
+                                /* -> add ('nom')
                                  -> add ('activite')
                                  -> add ('adresse',TextareaType::class)
                                  -> add ('siteWeb',UrlType::class)
-                                 -> getForm();
+                                 -> getForm();*/
 
         // analyse de la dernière requette http  + récupération des attributs de l'object concerné 
 
@@ -144,7 +145,6 @@ class ProStagesCController extends AbstractController
         
     }
 
-
   /**
      * @Route("/modifier/entreprise/{id}", name="modifierUneEntreprise")
      */
@@ -152,12 +152,12 @@ class ProStagesCController extends AbstractController
     {
     
         // creation d'un objet formulaire pour saisir un stage
-        $formulaireEntreprise = $this -> createFormBuilder($entreprise)
-                                 -> add ('nom')
+        $formulaireEntreprise = $this -> createForm(EntrepriseType::class, $entreprise);
+                                 /*-> add ('nom')
                                  -> add ('activite')
                                  -> add ('adresse',TextareaType::class)
                                  -> add ('siteWeb',UrlType::class)
-                                 -> getForm();
+                                 -> getForm();*/
 
         // analyse de la dernière requette http  + récupération des attributs de l'object concerné 
 
