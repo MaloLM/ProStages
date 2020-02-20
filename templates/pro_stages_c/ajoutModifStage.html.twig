@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  {% if action == "ajouter" %}
+    {% if action == "ajouter" %}
         Ajouter un stage
     {% else %}  
         Modifier un stage
@@ -11,18 +11,63 @@
 {% block contenu %}
 
 <div class="px-5">
-    <div class="card ">
-        <h5 class="card-header"> {{stage.titre}}</h5>
+    <div class="card">
+        <h5 class="card-header">{% if action == "ajouter" %}
+                                    Ajouter un stage
+                                {% else %}  
+                                    Modifier un stage
+                                {% endif %}</h5>
         <div class="card-body">
 
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                       
-                        <-- contenu -->
+
+                            {{ form_start (vueFormulaireAjoutStage, {'attr':{'novalidate':'novalidate'}}) }}
+                        <div>    
+                            <div>
+                                    {{ form_label (vueFormulaireAjoutStage.titre) }} 
+                                <br> 
+                                    {{ form_widget (vueFormulaireAjoutStage.titre) }} 
+                            </div>
+                                <br>
+                            <div>
+                                    {{ form_label (vueFormulaireAjoutStage.domaine) }} 
+                                <br>
+                                    {{ form_widget (vueFormulaireAjoutStage.domaine) }} 
+                            </div>
+                                <br>
+                            <div>
+                                    {{ form_label (vueFormulaireAjoutStage.description) }} 
+                                <br> 
+                                    {{ form_widget (vueFormulaireAjoutStage.description) }} 
+                            </div>
+                                <br>
+                            <div>
+                                    {{ form_label (vueFormulaireAjoutStage.email) }} 
+                                <br>
+                                    {{ form_widget (vueFormulaireAjoutStage.email) }}            
+                            </div>
+                        </div>    
+                                <br>
+                            <div class="alert alert-secondary" role="alert">
+                                    {{ form_label (vueFormulaireAjoutStage.entreprise) }} 
+                                <br>
+                                    {{ form_widget (vueFormulaireAjoutStage.entreprise) }}            
+                            </div>
+                                <br>    
+                            <div class="alert alert-secondary" role="alert">
+                                    {{ form_label (vueFormulaireAjoutStage.formations) }} 
+                                <br>
+                                    {{ form_widget (vueFormulaireAjoutStage.formations) }}            
+                            </div>
+                                <br>       
+                            <div>
+                                <button type="submit" class="btn btn-success">Enregistrer</button>
+                            </div>
+                            {{ form_end (vueFormulaireAjoutStage) }}     
 
                     </div>
-
                 </div>
             </div>
         </div>

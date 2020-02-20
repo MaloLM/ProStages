@@ -116,11 +116,6 @@ class ProStagesCController extends AbstractController
 
         // creation d'un objet formulaire pour saisir un stage
         $formulaireEntreprise = $this -> createForm(EntrepriseType::class, $entreprise);
-                                /* -> add ('nom')
-                                 -> add ('activite')
-                                 -> add ('adresse',TextareaType::class)
-                                 -> add ('siteWeb',UrlType::class)
-                                 -> getForm();*/
 
         // analyse de la dernière requette http  + récupération des attributs de l'object concerné 
 
@@ -136,7 +131,6 @@ class ProStagesCController extends AbstractController
             //redirection de l'utilisateur vers la page affichant la list des entreprises
             return $this->redirectToRoute('entreprises'); 
         }
-
         // générer la vue représentant le formulaire
         $vueFormulaireEntreprise = $formulaireEntreprise -> createView();
                     
@@ -155,11 +149,6 @@ class ProStagesCController extends AbstractController
 
         // creation d'un objet formulaire pour saisir un stage
         $formulaireEntreprise = $this -> createForm(EntrepriseType::class, $entreprise);
-                                 /*-> add ('nom')
-                                 -> add ('activite')
-                                 -> add ('adresse',TextareaType::class)
-                                 -> add ('siteWeb',UrlType::class)
-                                 -> getForm();*/
 
         // analyse de la dernière requette http  + récupération des attributs de l'object concerné 
 
@@ -209,7 +198,7 @@ class ProStagesCController extends AbstractController
             $manager->flush();
 
             //redirection de l'utilisateur vers la page affichant la list des entreprises
-            return $this->redirectToRoute('entreprises'); 
+            return $this->redirectToRoute('accueil'); 
         }
 
          // générer la vue représentant le formulaire
@@ -217,8 +206,8 @@ class ProStagesCController extends AbstractController
 
                     
         // afficher la page d'ajout d'une ressource 
-        return $this->render('pro_stages_c/ajoutModifEntreprise.html.twig',
-        ['vueFormulaireEntreprise' => $vueFormulaireAjoutStage,'action'=>"ajouter"]);
+        return $this->render('pro_stages_c/ajoutModifStage.html.twig',
+        ['vueFormulaireAjoutStage' => $vueFormulaireAjoutStage,'action'=>"ajouter"]);
         
     }
 }
