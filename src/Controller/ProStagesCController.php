@@ -107,7 +107,7 @@ class ProStagesCController extends AbstractController
 
 
       /**
-     * @Route("/ajouter/entreprise", name="ajouterUneEntreprise")
+     * @Route("/admin/ajouter/entreprise", name="ajouterUneEntreprise")
      */
     public function ajouterUneEntreprise(Request $requetteHttp, ObjectManager $manager)
     {
@@ -141,7 +141,7 @@ class ProStagesCController extends AbstractController
     }
 
   /**
-     * @Route("/modifier/entreprise/{id}", name="modifierUneEntreprise")
+     * @Route("/admin/modifier/entreprise/{id}", name="modifierUneEntreprise")
      */
     public function modifierUneEntreprise(Request $requetteHttp, ObjectManager $manager, Entreprise $entreprise)
     {
@@ -175,7 +175,7 @@ class ProStagesCController extends AbstractController
         
     }
     /**
-     * @Route("/ajouter/stage", name="ajouterUnStage")
+     * @Route("/profile/ajouter/stage", name="ajouterUnStage")
      */
     public function ajouterUnStage(Request $requetteHttp, ObjectManager $manager)
     {
