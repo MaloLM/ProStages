@@ -55,6 +55,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{path('ajouterUnStage')}}">Ajouter un stage</a>
                 </li>
+                  {% if is_granted('ROLE_USER') %}
+                     <li class="nav-item">
+                     <i class = "icon-user"></i>
+                        <a class="nav-link" href="{{path('app_logout')}}">🔴Déconnexion</a>
+                     </li>
+                {% else %} 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('app_login')}}">🔵Connexion</a>
+                    </li>    
+                {% endif %}
                 <div class = "px-5">
                 <li class="nav-item">
                     <a class="btn btn-outline-dark text-dark" href="https://github.com/MaloLM/ProStages2">Le Github</a>
