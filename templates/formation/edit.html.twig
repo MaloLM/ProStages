@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProStages : modifier une formation{% endblock %}
+
+{% block contenu %}
+   
+<div class="px-5">
+    <div class="card ">
+        <h5 class="card-header"> Editer une formation</h5>
+        <div class="card-body">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                       
+                        {{ include('formation/_form.html.twig', {'button_label': 'Update'}) }}
+
+                        <a href="{{ path('formation_index') }}">back to list</a>
+
+                        {{ include('formation/_delete_form.html.twig') }}
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br> 
+
+  
+{% endblock %}
