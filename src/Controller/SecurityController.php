@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
+use App\Form\UserType;
 
 class SecurityController extends AbstractController
 {
@@ -31,7 +36,43 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-
+        
     }
+
+   /**
+     * @Route("inscription", name="app_signin")
+     */
+    public function inscription(Request $requetteHttp, ObjectManager $manager)
+    {
+        // creation d'un unitlisateur initialement vierge
+        $utilisateur = new User();
+
+        // creation d'un objet formulaire pour saisir un utilisateur
+        $formulaireUtilisateur = $this -> createForm(UserType::class, $utilisateur );
+
+        // analyse de la dernière requette http  + récupération des attributs de l'object concerné 
+
+        $formulaireUtilisateur -> handleRequest($requetteHttp);
+
+        //traiter les données du formulaire s'il a été soumi
+        if ( $formulaireUtilisateur -> isSubmitted() && $formulaireUtilisateur -> isValid() )
+        {
+            // enregistrer l'utilisateur en BD
+            $manager -> persist($utilisateur);
+            $manager->flush();
+
+            //redirection de l'utilisateur vers la page affichant la list des entreprises
+            return $this->redirectToRoute('accueil'); 
+        }
+        // générer la vue représentant le formulaire
+        $vueFormulaireUtilisateur =  $formulaireUtilisateur -> createView();
+                    
+        // afficher la page d'ajout d'une ressource 
+        return $this->render('security/inscription.html.twig',
+        ['vueFormulaireUtilisateur' => $vueFormulaireUtilisateur]);
+        
+    }
+
+
     
 }

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block contenu %}
+<div class="px-5">
+    <div class="card ">
+        <h5 class="card-header">Inscrivez-vous  </h5>
+        <div class="card-body">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+
+                    {{ form_start (vueFormulaireUtilisateur) }}
+                                     
+<div>
+                        {{ form_label (vueFormulaireUtilisateur.prenom) }} 
+                        <br> 
+                        {{ form_widget (vueFormulaireUtilisateur.prenom) }} 
+</div>
+<br>
+<div>
+                        {{ form_label (vueFormulaireUtilisateur.nom) }} 
+                        <br>
+                        {{ form_widget (vueFormulaireUtilisateur.nom) }} 
+</div>
+<br>
+<div>
+                        {{ form_label (vueFormulaireUtilisateur.email) }} 
+                        <br> 
+                        {{ form_widget (vueFormulaireUtilisateur.email) }} 
+</div>
+<br>
+<div>
+                        {{ form_label (vueFormulaireUtilisateur.password) }} 
+                        <br>
+                        {{ form_widget (vueFormulaireUtilisateur.password) }} 
+                    
+</div>
+<br>
+<div>
+    <button type="submit" class="btn btn-success">S'inscrire</button>
+</div>
+                    {{ form_end (vueFormulaireUtilisateur) }}     
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+

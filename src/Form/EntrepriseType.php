@@ -18,8 +18,7 @@ class EntrepriseType extends AbstractType
             ->add('nom',TextType::class,['constraints'=> new NotBlank()])
             ->add('activite', TextType::class,['label' => 'Activite principale','constraints'=> new NotBlank()])
             ->add('adresse', TextType::class,['constraints'=> new NotBlank()])
-            ->add('siteWeb',UrlType::class,['constraints'=> new NotBlank()])
-        ;
+            ->add('siteWeb',UrlType::class,['constraints'=> new NotBlank()]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

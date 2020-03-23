@@ -9,6 +9,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+                   
+                    {% if stages == "true" %}
+                        <p>Aucune proposition de stage disponible.</p>
+                        <br>
+                        <a type="button" class="btn btn-success py-2" href="{{path('entreprises')}}">Revenir aux entreprises</a>
+                    {% endif %}
                         <!--collapes-->
                         {% set idCollapse = "c" %}
                         {% for stage in stages %}

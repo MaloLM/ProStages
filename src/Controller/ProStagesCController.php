@@ -87,10 +87,16 @@ class ProStagesCController extends AbstractController
 
         if($type=="entreprises")
         {
+   
             $repoStages = $this->getDoctrine()->getRepository(Stage::class);
             //$stages = $repoStages->findByEntreprise($id);
             $stages = $repoStages->findStageByEntreprise($nom);
-            
+
+            if(count($stages) == 0)
+            {
+                $stages = true;
+            }
+           
         }
         elseif($type=="formations")
         {
@@ -103,7 +109,7 @@ class ProStagesCController extends AbstractController
         // envoyer les ressources récupérées a la vue chargée de les afficher
         return $this->render('pro_stages_c/index.html.twig',[
             'stages' => $stages]);
-    }
+    }        
 
 
       /**
@@ -209,6 +215,15 @@ class ProStagesCController extends AbstractController
         return $this->render('pro_stages_c/ajoutModifStage.html.twig',
         ['vueFormulaireAjoutStage' => $vueFormulaireAjoutStage,'action'=>"ajouter"]);
         
+    }
+     /**
+     * @Route("/", name="administration")
+     */
+    public function admin()
+    {
+        
+        // aller a la partie admin
+        return $this->render('pro_stages_c/index.html.twig',['stages' => $stages ]);
     }
 }
 

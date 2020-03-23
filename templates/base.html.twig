@@ -33,7 +33,7 @@
     
     {% block menu %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Bienvenue</a>
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" >
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -41,7 +41,7 @@
             <ul class="navbar-nav mr-auto">
                 <br>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('accueil')}}">Accueil </a>
+                    <a class="nav-link" href="{{path('accueil')}}">Accuei</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{path('formations')}}">Les formations</a>
@@ -55,14 +55,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{path('ajouterUnStage')}}">Ajouter un stage</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin">Admin</a>
-                </li>
+               
+                 {% if is_granted('ROLE_ADMIN') %}
+                         <li class="nav-item">
+                            <a class="nav-link" href="/admin">Admin</a>
+                        </li>      
+                        
+                {% else %} 
+                             
+                {% endif %}
                  <li class="nav-item">
                     <a class="btn btn-outline-dark text-dark" href="https://github.com/MaloLM/ProStages2">Le Github</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-md-auto">
+        
                             {% if is_granted('ROLE_USER') %}
                                 <li class="nav-item active">
                                         <a class="nav-link" href="{{ path('app_logout') }}">
@@ -71,17 +78,22 @@
                                             <span class="sr-only">(current)</span>
                                         </a>
                                 </li>
-                        
                             {% else %} 
-                                <li class="nav-item active"> 
-                                <a class="nav-link" href="{{ path('app_login') }}" style="margin-right:0.5em;">
-                                    🔵Connexion
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ path('app_signin') }}">
+                                        Inscription
                                     <span class="sr-only">(current)</span></a>
                                 </li>
+                                <li class="nav-item active"> 
+                                    <a class="nav-link" href="{{ path('app_login') }}" style="margin-right:0.5em;">
+                                        <i class="icon-user"></i>
+                                        🔵Connexion
+                                    <span class="sr-only">(current)</span></a>
+                                </li>
+                            
                             {% endif %}
-                <div class = "px-5">
-               
-                </div>
+                
+              
             </ul>
         </div>
     </nav>

@@ -14,19 +14,19 @@
                   <div class="col-md-12">
                       <!--liste des stages-->
                       <table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Chercher par formation </th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for formation in formations %}
-    <tr>
-      <th scope="row"><a href="{{path("tri_stage",{type:"formations",nom:formation.nomCourt})}}">{{formation.nomLong}}</a></th> 
-    </tr>
-    {%endfor%}
-  </tbody>
-</table>
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">Chercher par formation </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for formation in formations %}
+                            <tr>
+                              <th scope="row"><a href="{{path("tri_stage",{type:"formations",nom:formation.nomCourt})}}">{{formation.nomLong}}</a></th> 
+                            </tr>
+                            {%endfor%}
+                          </tbody>
+                        </table>
                   </div>
               </div>
           </div>

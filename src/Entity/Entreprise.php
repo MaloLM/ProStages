@@ -25,8 +25,8 @@ class Entreprise
      * @Assert\Length(
      * min = 4,
      * max = 255,
-     * minMessage = "le nom de l'entreprise doit faire au moins {{limit}} caractères.",
-     * maxMessage = "le nom de l'entreprise doit faire au plus {{limit}} caractères."
+     * minMessage = "le nom de l'entreprise doit faire au moins {{ limit }} caractères.",
+     * maxMessage = "le nom de l'entreprise doit faire au plus {{ limit }} caractères."
      * )
      */
     private $nom;
