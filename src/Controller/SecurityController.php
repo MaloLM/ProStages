@@ -11,6 +11,8 @@ use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Form\UserType;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 class SecurityController extends AbstractController
 {
@@ -42,7 +44,7 @@ class SecurityController extends AbstractController
    /**
      * @Route("inscription", name="app_signin")
      */
-    public function inscription(Request $requetteHttp, ObjectManager $manager)
+    public function inscription(Request $requetteHttp, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
     {
         // creation d'un unitlisateur initialement vierge
         $utilisateur = new User();
@@ -57,12 +59,20 @@ class SecurityController extends AbstractController
         //traiter les données du formulaire s'il a été soumi
         if ( $formulaireUtilisateur -> isSubmitted() && $formulaireUtilisateur -> isValid() )
         {
+            // attribuer un role a l'utilisateur
+            $utilisateur->setRoles(['ROLE_USER']);
+
+            // encoder le mdp de l'utilisateur
+            $motDePasseEncode = $encoder->encodePassword($utilisateur, $utilisateur->getPassword());
+            $utilisateur->setPassword($motDePasseEncode);
+
+
             // enregistrer l'utilisateur en BD
             $manager -> persist($utilisateur);
             $manager->flush();
 
             //redirection de l'utilisateur vers la page affichant la list des entreprises
-            return $this->redirectToRoute('accueil'); 
+            return $this->redirectToRoute('app_login'); 
         }
         // générer la vue représentant le formulaire
         $vueFormulaireUtilisateur =  $formulaireUtilisateur -> createView();
